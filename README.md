@@ -1,1 +1,1 @@
-﻿
+﻿Programul acesta creeaza un obiect si il afiseaza.
