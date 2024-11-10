@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 using System.Collections.Specialized;
 
 namespace Puppy
@@ -8,23 +7,28 @@ namespace Puppy
     {
         static void Main(string[] args)
         {
-            string name = "", breed = "", size = "", age ="" , weight = "", healthStatus = "";
             string choice = "";
 
-            while(choice != "3")
+            List<Dog> dogList = new List<Dog>();
+
+            while(choice != "4")
             {
+                Console.Clear();
                 displayMenu();
                 choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
-                        readDog(ref name, ref breed, ref size, ref age, ref weight, ref healthStatus);
+                        readDog(ref dogList);
                         break;
                     case "2":
-                        showDog(name, breed, size, age, weight, healthStatus);
+                        showLastDog(ref dogList);
                         break;
                     case "3":
+                        showAllDogs(ref dogList);
+                        break;
+                    case "4":
                         Console.WriteLine("The app is closing...");
                         break;
                     default:
@@ -33,45 +37,67 @@ namespace Puppy
                 }
             }
 
-        static void displayMenu()
+            static void displayMenu()
             {
                 Console.WriteLine("---------Dogs---------");
                 Console.WriteLine("Option 1: Read a dog");
-                Console.WriteLine("Option 2: Display a dog");
-                Console.WriteLine("Option 3: The app will close");
+                Console.WriteLine("Option 2: Display last dog");
+                Console.WriteLine("Option 3: Display all the dogs");
+                Console.WriteLine("Option 4: The app will close");
                 Console.WriteLine("Choose one option!");
             }
 
-        static void readDog(ref string name, ref string breed, ref string size, ref string age, ref string weight, ref string healthStatus)
+            static void readDog(ref List<Dog> dogList)
             {
                 Console.Write("Name: ");
-                name = Console.ReadLine();
+                string name = Console.ReadLine();
 
                 Console.Write("Breed: ");
-                breed = Console.ReadLine();
+                string breed = Console.ReadLine();
 
                 Console.Write("Size: ");
-                size = Console.ReadLine();
+                string size = Console.ReadLine();
 
                 Console.Write("Age: ");
-                age = Console.ReadLine();
+                int age = Int32.Parse(Console.ReadLine());
 
                 Console.Write("Weight: ");
-                weight = Console.ReadLine();
+                int weight = Int32.Parse(Console.ReadLine());
 
                 Console.Write("Health Status : ");
-                healthStatus = Console.ReadLine();
+                string healthStatus = Console.ReadLine();
 
+                Dog dog = new Dog(name, breed, size, age, weight, healthStatus);
+
+                dogList.Add(dog);
             }
-        static void showDog(string name, string breed, string size, string age, string weight, string healthStatus)
+
+            static void showLastDog(ref List<Dog> dogList)
             {
-                Console.WriteLine("Dog's details: "); 
-                Console.WriteLine("Name: " + name);
-                Console.WriteLine("Breed: " + breed);
-                Console.WriteLine("Size: " + size);
-                Console.WriteLine("Age: " + age);
-                Console.WriteLine("Weight: " + weight);
-                Console.WriteLine("Health Status: " + healthStatus);
+                Console.WriteLine("Dog's details: ");
+                Console.WriteLine("Name: " + dogList.Last().name);
+                Console.WriteLine("Breed: " + dogList.Last().breed);
+                Console.WriteLine("Size: " + dogList.Last().size);
+                Console.WriteLine("Age: " + dogList.Last().age);
+                Console.WriteLine("Weight: " + dogList.Last().weight);
+                Console.WriteLine("Health Status: " + dogList.Last().healthStatus);
+                Console.Read();
+            }
+
+            static void showAllDogs(ref List<Dog> dogList)
+            {
+                foreach(Dog dog in dogList)
+                {
+                    Console.WriteLine("Dog's details: ");
+                    Console.WriteLine("Name: " + dog.name);
+                    Console.WriteLine("Breed: " + dog.breed);
+                    Console.WriteLine("Size: " + dog.size);
+                    Console.WriteLine("Age: " + dog.age);
+                    Console.WriteLine("Weight: " + dog.weight);
+                    Console.WriteLine("Health Status: " + dog.healthStatus);
+                    Console.WriteLine("-------");
+                }
+                Console.Read();
             }
         }
     }
