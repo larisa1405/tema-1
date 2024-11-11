@@ -44,6 +44,16 @@ namespace Puppy
                     logger.LogError(ex, "An error occurred while creating the DB.");
                 }
             }
+
+            static void deleteDog(ref List<Dog> dogList)
+            {
+                Console.Write("Type the name of the dog you want to delete: ");
+                string deletedDog = Console.ReadLine();
+
+                Dog dogToDelete = dogList.Find(d => d.name == deletedDog);
+
+                dogList.Remove(dogToDelete);
+            }
         }
     }
 }
