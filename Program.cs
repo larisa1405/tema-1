@@ -11,7 +11,7 @@ namespace Puppy
 
             List<Dog> dogList = new List<Dog>();
 
-            while(choice != "4")
+            while(choice != "5")
             {
                 Console.Clear();
                 displayMenu();
@@ -29,6 +29,9 @@ namespace Puppy
                         showAllDogs(ref dogList);
                         break;
                     case "4":
+                        deleteDog(ref dogList);
+                        break;
+                    case "5":
                         Console.WriteLine("The app is closing...");
                         break;
                     default:
@@ -43,7 +46,8 @@ namespace Puppy
                 Console.WriteLine("Option 1: Read a dog");
                 Console.WriteLine("Option 2: Display last dog");
                 Console.WriteLine("Option 3: Display all the dogs");
-                Console.WriteLine("Option 4: The app will close");
+                Console.WriteLine("Option 4: Delete a dog");
+                Console.WriteLine("Option 5: The app will close");
                 Console.WriteLine("Choose one option!");
             }
 
@@ -98,6 +102,16 @@ namespace Puppy
                     Console.WriteLine("-------");
                 }
                 Console.Read();
+            }
+
+            static void deleteDog(ref List<Dog> dogList)
+            {
+                Console.Write("Type the name of the dog you want to delete: ");
+                string deletedDog = Console.ReadLine();
+
+                Dog dogToDelete = dogList.Find(d => d.name == deletedDog);
+
+                dogList.Remove(dogToDelete);
             }
         }
     }
