@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Puppy
 {
-    class Dog
+    public class Dog
     {
-        public string name;
-        public string breed;
-        public string size;
-        public int age;
-        public int weight;
-        public string healthStatus;
-
-        public Dog(string aName, string aBreed, string aSize, int aAge, int aWeight, string aHealthStatus)
-        {
-            this.name = aName;
-            this.breed = aBreed;
-            this.size = aSize;
-            this.age = aAge;
-            this.weight = aWeight;
-            this.healthStatus = aHealthStatus;
-        }
+        [Key]
+        public int Id { get; set; }
+        public string name { get; set; }
+        public string breed { get; set; }
+        public string size { get; set; }
+        public int age { get; set; }
+        public int weight { get; set; }
+        public string healthStatus { get; set; }
     }
 }
